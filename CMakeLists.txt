@@ -18,12 +18,12 @@ list(FILTER sources EXCLUDE REGEX ".(/tests/).")
 
 include_directories(${GTEST_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/inc)
 
-add_executable(gme ${sources})
-add_executable(test_gme ${testing_sources})
+add_executable(gmx ${sources})
+add_executable(test_gmx ${testing_sources})
 
-target_compile_definitions(test_gme PUBLIC -DTEST)
+target_compile_definitions(test_gmx PUBLIC -DTEST)
 
 
-target_link_libraries(test_gme ${GTEST_BOTH_LIBRARIES}
+target_link_libraries(test_gmx ${GTEST_BOTH_LIBRARIES}
                                ${GMOCK_BOTH_LIBRARIES})
 
