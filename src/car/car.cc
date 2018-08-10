@@ -8,6 +8,17 @@ Car &Car::InstallSpare(std::unique_ptr<TireI> tire) {
   return *this;
 }
 
+Car &Car::InstallTire(std::unique_ptr<TireI> tire, Axel axel, Side side) {
+  if (tires_.at(axel + side) == nullptr) {
+    tires_[axel + side] = std::move(tire);
+  }
+  return *this;
+}
+
+float Car::TirePressure(Axel axel, Side side) const {
+  return tires_.at(axel + side)->pressure();
+}
+
 } // namespace car
 
 } // namespace gmx

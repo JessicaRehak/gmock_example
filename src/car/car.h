@@ -10,14 +10,20 @@ namespace gmx {
 
 namespace car {
 
+enum Axel { front, rear = 2 };
+enum Side { left, right };
+
 class Car {
  public:
   Car() = default;
-  
+
   Car &InstallSpare(std::unique_ptr<TireI> tire);
-  float SparePressure() const { return spare_tire_->pressure(); };
+  Car &InstallTire(std::unique_ptr<TireI> tire, Axel axel, Side side);
   
+  float SparePressure() const { return spare_tire_->pressure(); };
+  float TirePressure(Axel axel, Side side) const; 
  private:
+  std::array<std::unique_ptr<TireI>, 4> tires_;
   std::unique_ptr<TireI> spare_tire_;
 };
 

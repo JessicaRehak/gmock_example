@@ -21,3 +21,18 @@ TEST_F(CarTest, InstallSpare) {
   EXPECT_FLOAT_EQ(test_car.SparePressure(), 30.0);
 }
 
+TEST_F(CarTest, InstallTire) {
+  auto mock_tire = std::make_unique<gmx::car::MockTire>();
+  EXPECT_CALL(*mock_tire, pressure())
+      .Times(1)
+      .WillOnce(::testing::Return(45));
+  auto tire = std::unique_ptr<gmx::car::TireI>(std::move(mock_tire));
+
+  test_car.InstallTire(std::move(tire),
+                       gmx::car::Axel::front, gmx::car::Side::right);
+
+  EXPECT_FLOAT_EQ(test_car.TirePressure(gmx::car::Axel::front,
+                                        gmx::car::Side::right), 45);
+}
+
+
