@@ -11,6 +11,9 @@ Car &Car::InstallSpare(std::unique_ptr<TireI> tire) {
 Car &Car::InstallTire(std::unique_ptr<TireI> tire, Axel axel, Side side) {
   if (tires_.at(axel + side) == nullptr) {
     tires_[axel + side] = std::move(tire);
+  } else {
+    //tires_[axel + side].reset(nullptr);
+    tires_[axel + side] = std::move(tire);
   }
   return *this;
 }

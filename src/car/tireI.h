@@ -20,6 +20,9 @@ class TireI {
   virtual TireI &Turn(float degrees) = 0; // Change orientation by degrees
   virtual TireI &Pump(float pounds) = 0;  // Increase tire pressure
 
+ private:
+ 
+  
 };
 
 } // namespace car
